@@ -1,0 +1,28 @@
+/* Colors */
+$bar-bk-color: #381F0B;
+$bar-text-color: #FFFFFF;
+
+.bar {
+  padding-left: 20px;
+  background: $bar-bk-color;
+  color: $bar-text-color;
+  height: 46px;
+}
+
+.logo {
+  height: 42px;
+  width: 42px;
+  padding: 5px;
+}
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+}
+
+.table {
+  padding: 2%;
+}
