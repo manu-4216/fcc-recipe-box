@@ -2,27 +2,67 @@
 $bar-bk-color: #381F0B;
 $bar-text-color: #FFFFFF;
 
-.bar {
-  padding-left: 20px;
-  background: $bar-bk-color;
-  color: $bar-text-color;
-  height: 46px;
+html {
+  font-size: 17px;
+  background-color: #F4F4F6;
 }
 
-.logo {
-  height: 42px;
-  width: 42px;
-  padding: 5px;
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+.label {
+  font-size: 1em;
+  color: rgb(90, 90, 90);
+
 }
 
-.footer {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.app-header {
+  margin: 1em auto;
   text-align: center;
 }
 
-.table {
-  padding: 2%;
+.recipe-list {
+  margin: 0 3em;
+}
+
+.recipe {
+  max-width: 1000px;
+  padding-right: 0;
+  list-style-type: none;
+  padding: 0.3em 1em;
+  margin: -1px auto 0 auto;
+  border: 1px solid rgb(190, 190, 190);
+}
+
+.recipe:hover .title {
+  color: #43aea8;
+}
+
+.recipe:hover .right-side-buttons {
+  visibility:visible;
+}
+
+.right-side-buttons {
+  visibility: hidden;
+  float: right;
+}
+
+.ingredient-list {
+  display: inline;
+  margin: 0 0 0 7px;
+  padding: 0;
+}
+
+.ingredient {
+  color: white;
+  background-color: rgba(170, 170, 170, 1);
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 7px 0 0;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
