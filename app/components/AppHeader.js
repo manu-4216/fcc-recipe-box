@@ -1,15 +1,21 @@
 var React = require('react');
 require('../main.scss');
 
-var AppHeader = function(props) {
+var AppHeader = function({recipes, onRecipeAdd}) {
+
+  const newRecipe = {
+    name: 'New Recipe',
+    ingredients: [],
+    editing: true
+  }
 
   return (
-    <h1 className="app-header">
-      <button>
+    <div className='app--header'>
+      <button className='header--add-button' onClick={onRecipeAdd.bind(null, newRecipe)}>
         +
       </button>
-      <span>Recipe Box</span>
-    </h1>
+      <h1 className='header--title'>Recipe Box</h1>
+    </div>
   )
 };
 

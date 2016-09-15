@@ -4,22 +4,14 @@ require('../main.scss');
 
 var RecipeList = function(props) {
 
-  const recipes = [
-    {
-      name: "Apple Pie",
-      preparation: "Take the apples and the pie, mix them and bake them for 25 min at medium temperature.",
-      ingredients: ["apples", "pie"]
-    },
-     {
-       name: "Cheese Pie",
-       preparation: "Take the cheese and the pie, mix them and bake them for 25 min at medium temperature.",
-       ingredients: ["cheese", "pie"]
-     }
-  ];
-
   return (
-    <ul className="recipe-list">{recipes.map(recipe =>
-      <Recipe recipe={recipe} key={recipe.name} />
+    <ul className='recipe-list'>{props.recipes.map(recipe =>
+      <Recipe
+        key={recipe.name}
+        recipe={recipe}
+        onRecipeDelete={props.onRecipeDelete}
+        onActivateEdit={props.onActivateEdit}
+        onInputChange={props.onInputChange} />
     )}</ul>
   )
 };
