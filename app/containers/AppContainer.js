@@ -32,15 +32,35 @@ var AppContainer = React.createClass({
     })
   },
 
-  // Activate (and deactivate) editing mode for individual or 'all' recipes:
-  handleActivateEdit: function (recipeId, newEditingState, event) {
+  // Activate (and deactivate) 'editing' mode and 'collapsed' mode for recipes:
+  handleToggleEditAndCollapse: function (recipeId, newEditingState, event) {
     event.stopPropagation();
 
+    // First updates the 'expanded' property:
+    //  -a. EXPAND If: !expanded:
+    if (!this.getRecipeValueById(recipeId, 'expanded')) {
+      this.setRecipePropertyById(recipeId, 'expanded', true);
+    //  -b. COLLAPSE If: expanded && !newEditingState && !editing:
+  } else if (this.getRecipeValueById(recipeId, 'expanded')
+          && !(newEditingState)
+          && !(this.getRecipeValueById(recipeId, 'editing'))) {
+        this.setRecipePropertyById(recipeId, 'expanded', false);
+    }
+
+    // Updates the 'editing' property:
+    /* -a. first change the active recipe to 'editing' = newEditingState:
+     *      - false: if click on the recipe itself (outside 'edit' or input fields)
+     *      - true: if click on the 'edit' btn or an input field
+     */
+    this.setRecipePropertyById(recipeId, 'editing', newEditingState);
+
+    /*  -b. Then change 'editing' to false for all the other recipes. This way,
+     *      there will be no 2 recipes both being edited at the same time.
+     */
     this.setState({
       recipes: this.state.recipes.map(recipe => {
-        if ((recipe.id === recipeId || recipeId === 'all')
-          && recipe.editing !== newEditingState) {
-          recipe.editing = newEditingState;
+        if (recipe.id !== recipeId ) {
+          this.setRecipePropertyById(recipe.id, 'editing', false);
         }
         return recipe;
       })
@@ -49,9 +69,30 @@ var AppContainer = React.createClass({
     });
   },
 
+  // Returns the value of a recipe 'property' (eg. editing or expanded), with a given 'id' :
+  getRecipeValueById: function (id, prop) {
+    let targetedRecipeWithId = this.state.recipes.filter(recipe => {
+      return (recipe.id === id);
+    })[0];
+
+    return targetedRecipeWithId[prop];
+  },
+
+  setRecipePropertyById: function (recipeId, prop, value) {
+    this.setState({
+      recipes: this.state.recipes.map(recipe => {
+        if (recipe.id === recipeId) {
+          recipe[prop] = value;
+        }
+        return recipe;
+      })
+    })
+  },
+
   // Updates the state while typing (name or ingredients):
   handleInputChange: function (recipeId, field, event) {
     event.stopPropagation();
+
     this.setState({
       recipes: this.state.recipes.map(recipe => {
         if (recipe.id === recipeId) {
@@ -69,6 +110,14 @@ var AppContainer = React.createClass({
     // There is no setCache here, but only after the editing is finished.
   },
 
+  // Checks if 'Enter' key has been pressed. This
+  handleEnterCheck: function (recipeId, field, event) {
+    if (event.key === 'Enter') {
+      // Disable the 'editing' state of the field:
+      this.setRecipePropertyById(recipeId, 'editing', false);
+    }
+  },
+
 
   render: function () {
     return (
@@ -79,8 +128,9 @@ var AppContainer = React.createClass({
         <RecipeList
           recipes={this.state.recipes}
           onRecipeDelete={this.handleRecipeDelete}
-          onActivateEdit={this.handleActivateEdit}
+          onToggleEditAndCollapse={this.handleToggleEditAndCollapse}
           onInputChange={this.handleInputChange}
+          onEnterCheck={this.handleEnterCheck}
           />
       </div>
     )

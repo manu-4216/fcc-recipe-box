@@ -9,8 +9,10 @@ var RecipeList = function(props) {
         key={recipe.id}
         recipe={recipe}
         onRecipeDelete={props.onRecipeDelete}
-        onActivateEdit={props.onActivateEdit}
-        onInputChange={props.onInputChange} />
+        onToggleEditAndCollapse={props.onToggleEditAndCollapse}
+        onInputChange={props.onInputChange}
+        onToggleExpand={props.onToggleExpand}
+        onEnterCheck={props.onEnterCheck} />
     )}</ul>
   )
 };
