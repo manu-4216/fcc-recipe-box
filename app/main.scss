@@ -14,17 +14,17 @@ h1 {
 }
 
 .app--header {
-  margin: 1rem auto;
+  margin: 2rem auto 1rem auto;
   text-align: center;
 }
 
 .header--title {
   color: $accent-color;
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.9rem;
 }
 
 .header--add-button {
-  font-size: 110%;
+  font-size: 100%;
   vertical-align: middle;
   margin-bottom: 1rem;
   border: 1px solid $accent-color;
@@ -32,7 +32,7 @@ h1 {
 }
 
 .recipe-list {
-  margin: 1.5em;
+  margin: 0.5em 1.5em;
   padding: 4px;
 }
 

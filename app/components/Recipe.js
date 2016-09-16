@@ -6,6 +6,7 @@ var Recipe = function({recipe, onRecipeDelete, onActivateEdit, onInputChange}) {
   return (
     <li className="recipe" onClick={onActivateEdit.bind(null, 'all', false)}>
 
+      {/* Display the recipe name (editing or non editing mode) */}
       {!recipe.editing ?
         <div className="recipe--title">
           <span>
@@ -19,13 +20,14 @@ var Recipe = function({recipe, onRecipeDelete, onActivateEdit, onInputChange}) {
             placeholder='add recipe name'
             autoFocus={true}
             value={recipe.name}
-            onChange={onInputChange.bind(null, recipe.name, 'name')}
-            onClick={onActivateEdit.bind(null, recipe.name, true)}
+            onChange={onInputChange.bind(null, recipe.id, 'name')}
+            onClick={onActivateEdit.bind(null, recipe.id, true)}
              >
           </input>
         </div>
       }
 
+      {/* Display the ingredients (editing or non editing mode) */}
       <span className='recipe--label'>Ingredients:</span>
       <span className='recipe--ingredient-list'>
         {!recipe.editing ? (
@@ -41,8 +43,8 @@ var Recipe = function({recipe, onRecipeDelete, onActivateEdit, onInputChange}) {
               type='text'
               placeholder='add ingredients'
               value={recipe.ingredients}
-              onChange={onInputChange.bind(null, recipe.name, 'ingredients')}
-              onClick={onActivateEdit.bind(null, recipe.name, true)}
+              onChange={onInputChange.bind(null, recipe.id, 'ingredients')}
+              onClick={onActivateEdit.bind(null, recipe.id, true)}
               >
             </input>
           </span>
@@ -50,8 +52,8 @@ var Recipe = function({recipe, onRecipeDelete, onActivateEdit, onInputChange}) {
       </span>
 
       <span className='recipe--right-side-buttons'>
-        <img className='icon' src='images/edit.png' onClick={onActivateEdit.bind(null, recipe.name, true)} alt='edit icon'></img>
-        <img className='icon' src='images/trash.png' onClick={onRecipeDelete.bind(null, recipe.name)} alt='trash icon'></img>
+        <img className='icon' src='images/edit.png' onClick={onActivateEdit.bind(null, recipe.id, true)} alt='edit icon'></img>
+        <img className='icon' src='images/trash.png' onClick={onRecipeDelete.bind(null, recipe.id)} alt='trash icon'></img>
       </span>
 
     </li>

@@ -1,12 +1,15 @@
 var React = require('react');
+import uuid from 'uuid';
 require('../main.scss');
 
-var AppHeader = function({recipes, onRecipeAdd}) {
+var AppHeader = function({onRecipeAdd}) {
 
   const newRecipe = {
+    id: uuid.v4(),
     name: 'New Recipe',
     ingredients: [],
-    editing: true
+    editing: true,
+    expanded: true
   }
 
   return (
