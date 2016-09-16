@@ -1,69 +1,16 @@
 var React = require('react');
-import uuid from 'uuid';
 var RecipeList = require('../components/RecipeList');
 var AppHeader = require('../components/AppHeader');
+var cacheHelper = require('../utils/cacheHelper');
 
 // Stateful master component.
 var AppContainer = React.createClass({
 
   getInitialState: function () {
     return {
-      recipes: this.getRecipesFromCache()
+      recipes: cacheHelper.getRecipesFromCache()
     }
   },
-
-  getRecipesFromCache: function () {
-    const mockRecipes = [
-      {
-        id: uuid.v4(),
-        name: 'Apple Pie',
-        ingredients: ['apples', 'pie'],
-        editing: false,
-        expanded: false
-      },
-       {
-         id: uuid.v4(),
-         name: 'Cheese Pie',
-         ingredients: ['cheese', 'pie'],
-         editing: false,
-         expanded: false
-       }
-    ];
-
-    // If no sopport, for localStorage, just return the mockRecipes:
-    if (!this.checkLocalStorageSupport()) {
-      console.log('LS no support!');
-      return mockRecipes
-    } else {
-      // Now that the support is ok, get the stored recipes, if stored:
-      if (localStorage.recipes) {
-        console.log("recipes alredy stored:" + JSON.parse(localStorage.recipes));
-        return JSON.parse(localStorage.recipes);
-      } else {
-        // If no recipes stored already, it means it is the 1st time:
-        //localStorage.recipes = JSON.stringify(mockRecipes);
-        console.log('1st time LS store');
-        this.setCache('recipes', mockRecipes);
-        return mockRecipes;
-      }
-    }
-  },
-
-  setCache: function (key, value) {
-    if (this.checkLocalStorageSupport()) {
-      localStorage[key] = JSON.stringify(value);
-    }
-    console.log("ls changed:" + JSON.stringify(value));
-  },
-
-  checkLocalStorageSupport: function () {
-    try {
-      return ('localStorage' in window && window['localStorage'] !== null);
-    } catch (e) {
-      return false;
-    }
-  },
-
 
   handleRecipeDelete: function (recipeId, event) {
     event.stopPropagation();
@@ -73,7 +20,7 @@ var AppContainer = React.createClass({
     }, function() {
       /* Updating the cache is done in the callback, once the state has been
          truly updated. Otherwise, the deleted recipe would still be there. */
-      this.setCache('recipes', this.state.recipes);
+      cacheHelper.setCache('recipes', this.state.recipes);
     });
   },
 
@@ -81,7 +28,7 @@ var AppContainer = React.createClass({
     this.setState({
       recipes: this.state.recipes.concat([newRecipe])
     }, function() {
-      this.setCache('recipes', this.state.recipes);
+      cacheHelper.setCache('recipes', this.state.recipes);
     })
   },
 
@@ -98,7 +45,7 @@ var AppContainer = React.createClass({
         return recipe;
       })
     }, function() {
-      this.setCache('recipes', this.state.recipes);
+      cacheHelper.setCache('recipes', this.state.recipes);
     });
   },
 
