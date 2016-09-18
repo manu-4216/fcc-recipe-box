@@ -5,15 +5,17 @@ var helpers = {
     const mockRecipes = [
       {
         id: uuid.v4(),
-        name: 'Apple cake',
-        ingredients: ['apples', 'cake', 'milk'],
+        name: 'Blueberry cake',
+        ingredients: ['blueberries', 'cake', 'milk'],
+        imageUrl: 'http://images.bigoven.com/image/upload/t_recipe-256/besteverblueberrycoffeecake-dedc12.jpg',
         editing: false,
         expanded: false
       },
        {
          id: uuid.v4(),
-         name: 'Cheese Pie',
-         ingredients: ['cheese', 'pie'],
+         name: 'Apple Pie',
+         ingredients: ['apples', 'pie crust', 'flour'],
+         imageUrl: 'http://media-cache-ec0.pinimg.com/736x/e0/a1/b4/e0a1b42afab402274c09ad2fc53d25ee.jpg',
          editing: false,
          expanded: false
        }
@@ -21,17 +23,19 @@ var helpers = {
 
     // If no sopport, for localStorage, just return the mockRecipes:
     if (!this.checkLocalStorageSupport()) {
-      //console.log('LS no support!');
       return mockRecipes
     } else {
       // Now that the support is ok, get the stored recipes, if stored:
       if (localStorage.recipes) {
-        //console.log("recipes alredy stored:" + JSON.parse(localStorage.recipes));
-        return JSON.parse(localStorage.recipes);
+        // First set 'expanded' to false:
+        let recipes = JSON.parse(localStorage.recipes);
+        recipes.map(recipe => {
+          recipe.expanded = false;
+          return recipe;
+        });
+        return recipes;
       } else {
         // If no recipes stored already, it means it is the 1st time:
-        //localStorage.recipes = JSON.stringify(mockRecipes);
-        //console.log('1st time LS store');
         this.setCache('recipes', mockRecipes);
         return mockRecipes;
       }
@@ -42,7 +46,6 @@ var helpers = {
     if (this.checkLocalStorageSupport()) {
       localStorage[key] = JSON.stringify(value);
     }
-    //console.log("ls changed:" + JSON.stringify(value));
   },
 
   checkLocalStorageSupport: function () {

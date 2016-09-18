@@ -37,12 +37,13 @@ h1 {
 }
 
 .recipe {
+  min-height: 2.5em;
   position: relative;
   max-width: 700px;
   background-color: white;
   padding-right: 0;
   list-style-type: none;
-  padding: 0.5em 1em;
+  padding: 0;
   margin: -1px auto 0 auto;
   border: 1px solid rgb(230, 230, 230);
   line-height: 150%;
@@ -51,35 +52,52 @@ h1 {
   }
 }
 
+.recipe--image {
+  display: inline;
+  height: 2.5em;
+  width: 3.5em;
+  background-color: rgb(174, 174, 175);
+  vertical-align: middle;
+}
+
 .recipe--title {
   font-size: 1.2em;
   font-weight: 600;
-  margin: 0.6rem 0;
+  margin: 0rem 0.5rem 0rem 0.4rem;
+  padding: 0.3rem 0.4rem;
+  vertical-align: middle;
 }
 
 .input-title {
   outline: 1px solid lighten(grey, 30%);
   border: none;
   font-family:inherit; /* prevents a change in the font type when editing */
+  margin-left: 0.4rem;
+  padding: 0.3rem 0.4rem;
+  vertical-align: middle;
 }
 .recipe:hover .recipe--title {
   color: $accent-color;
 }
 
-/* Used for the label: 'Ingredients' and 'Preparation' */
+
+/* Used for 'Ingredients' and 'ImageUrl' */
+.recipe--expanded-content {
+  margin: 0.4rem 3.5rem 0.6rem 0.5rem;
+}
+
 .recipe--label {
   font-size: 1em;
-  color: #999;
+  color: #6c7b6f;
   font-weight: 600;
-  margin-right: 0.5rem;
   text-decoration: underline;
 }
 
 /* Used for edit and delete buttons */
 .recipe--right-side-buttons {
   position: absolute;
-  right: 1em;
-  top: 0.6em;
+  right: 1rem;
+  top: 0.25rem;
   visibility: hidden;
 }
 
@@ -105,19 +123,32 @@ h1 {
   padding: 0;
 }
 
+.recipe--imageUrl {
+  display: inline-block;
+  width: 70%;
+  margin-left: 0.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-size: 1em;
+}
+
 .input-ingredients {
+  width: 80%;
   display: inline;
+  font-size: 0.8em !important; /* overwrites inherited font */
   outline: 1px solid lighten(grey, 30%);
   border: none;
-  font-family:inherit; /* prevents a change in the font type when editing */
-  margin: 0 0.6rem 0 0;
+  font-family: inherit; /* prevents a change in the font type when editing */
+  margin: 0 0.6rem 0 0.4rem;;
   padding: 0.05rem 0.2rem;
   font-size: 120%;
 }
 
 .recipe--ingredient {
   color: white;
-  background-color: rgba(170, 170, 170, 1);
+  background-color: #b5bdb3;
   list-style-type: none;
   display: inline-block;
   margin: 0 0.6rem 0 0;

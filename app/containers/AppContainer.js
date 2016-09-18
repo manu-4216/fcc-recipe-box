@@ -89,15 +89,25 @@ var AppContainer = React.createClass({
     })
   },
 
-  // Updates the state while typing (name or ingredients):
-  handleInputChange: function (recipeId, field, event) {
+
+  // Checks if 'Enter' key has been pressed.
+  handleEnterCheck: function (recipeId, field, event) {
+    if (event.key === 'Enter') {
+      // Disable the 'editing' state of the field:
+      this.setRecipePropertyById(recipeId, 'editing', false);
+      this.handleFinishEdit(recipeId, field, event);
+    }
+  },
+
+  // This is called 'onBlur' or when pressing Enter:
+  handleFinishEdit : function (recipeId, field, event) {
     event.stopPropagation();
 
     this.setState({
       recipes: this.state.recipes.map(recipe => {
         if (recipe.id === recipeId) {
-          if (field === 'name') {
-            recipe.name = event.target.value;
+          if (field === 'name' || field === 'imageUrl') {
+            recipe[field] = event.target.value;
           } else if (field === 'ingredients') {
             // Transform the input field 'text1,text2' from a string to an array ['text1', 'text2']:
             let ingredientsArray = event.target.value.split(',');
@@ -106,16 +116,9 @@ var AppContainer = React.createClass({
         }
         return recipe;
       })
+    }, function() {
+      cacheHelper.setCache('recipes', this.state.recipes);
     });
-    // There is no setCache here, but only after the editing is finished.
-  },
-
-  // Checks if 'Enter' key has been pressed. This
-  handleEnterCheck: function (recipeId, field, event) {
-    if (event.key === 'Enter') {
-      // Disable the 'editing' state of the field:
-      this.setRecipePropertyById(recipeId, 'editing', false);
-    }
   },
 
 
@@ -129,8 +132,8 @@ var AppContainer = React.createClass({
           recipes={this.state.recipes}
           onRecipeDelete={this.handleRecipeDelete}
           onToggleEditAndCollapse={this.handleToggleEditAndCollapse}
-          onInputChange={this.handleInputChange}
           onEnterCheck={this.handleEnterCheck}
+          onFinishEdit={this.handleFinishEdit}
           />
       </div>
     )

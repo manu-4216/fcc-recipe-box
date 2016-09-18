@@ -7,7 +7,8 @@ var AppHeader = function({onRecipeAdd}) {
   const newRecipe = {
     id: uuid.v4(),
     name: 'New Recipe',
-    ingredients: [],
+    ingredients: ['...'],
+    imageUrl:'',
     editing: true,
     expanded: true
   }

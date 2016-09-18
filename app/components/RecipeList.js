@@ -8,11 +8,7 @@ var RecipeList = function(props) {
       <Recipe
         key={recipe.id}
         recipe={recipe}
-        onRecipeDelete={props.onRecipeDelete}
-        onToggleEditAndCollapse={props.onToggleEditAndCollapse}
-        onInputChange={props.onInputChange}
-        onToggleExpand={props.onToggleExpand}
-        onEnterCheck={props.onEnterCheck} />
+        {...props} />
     )}</ul>
   )
 };
