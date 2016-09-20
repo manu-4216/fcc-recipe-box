@@ -18,6 +18,14 @@ var helpers = {
          imageUrl: 'http://media-cache-ec0.pinimg.com/736x/e0/a1/b4/e0a1b42afab402274c09ad2fc53d25ee.jpg',
          editing: false,
          expanded: false
+       },
+       {
+         id: uuid.v4(),
+         name: 'Quinoa Salad',
+         ingredients: ['quinoa', 'salad leafs', 'salt'],
+         imageUrl: 'http://images.media-allrecipes.com/userphotos/720x405/1005880.jpg',
+         editing: false,
+         expanded: false
        }
     ];
 

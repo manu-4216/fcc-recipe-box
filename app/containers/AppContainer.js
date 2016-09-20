@@ -1,6 +1,6 @@
 var React = require('react');
 var RecipeList = require('../components/RecipeList');
-var AppHeader = require('../components/AppHeader');
+var AddButton = require('../components/AddButton');
 var cacheHelper = require('../utils/cacheHelper');
 
 // Stateful master component.
@@ -125,9 +125,7 @@ var AppContainer = React.createClass({
   render: function () {
     return (
       <div>
-        <AppHeader
-          onRecipeAdd={this.handleRecipeAdd}
-          />
+        <div className='header--title'>Recipe Box</div>
         <RecipeList
           recipes={this.state.recipes}
           onRecipeDelete={this.handleRecipeDelete}
@@ -135,6 +133,9 @@ var AppContainer = React.createClass({
           onEnterCheck={this.handleEnterCheck}
           onFinishEdit={this.handleFinishEdit}
           />
+        <AddButton
+          onRecipeAdd={this.handleRecipeAdd}
+        />
       </div>
     )
   }

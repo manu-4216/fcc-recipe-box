@@ -1,24 +1,16 @@
 /* Colors */
 $bk-color: #F4F4F6;
-$bar-text-color: #FFFFFF;
 $accent-color: #43aea8;
 
 html {
-  font-size: 17px;
+  font-size: 18px;
   background-color:$bk-color;
 }
 
-h1 {
-  font-size: 2em;
-  display: inline;
-}
-
-.app--header {
-  margin: 2rem auto 1rem auto;
-  text-align: center;
-}
-
 .header--title {
+  font-size: 2em;
+  margin: 1rem auto 1rem auto;
+  text-align: center;
   color: $accent-color;
   padding: 0.3rem 0.9rem;
 }
@@ -32,8 +24,10 @@ h1 {
 }
 
 .recipe-list {
-  margin: 0.5em 1.5em;
-  padding: 4px;
+  margin: 0 auto;
+  list-style:none;
+  padding-left:0;
+  padding-bottom: 0.5rem;
 }
 
 .recipe {
@@ -41,11 +35,10 @@ h1 {
   position: relative;
   max-width: 700px;
   background-color: white;
-  padding-right: 0;
   list-style-type: none;
   padding: 0;
   margin: -1px auto 0 auto;
-  border: 1px solid rgb(230, 230, 230);
+  border: 1px solid grayscale(lighten($accent-color, 40%));
   line-height: 150%;
   &:hover {
     cursor: pointer;
@@ -88,15 +81,14 @@ h1 {
 
 .recipe--label {
   font-size: 1em;
-  color: #6c7b6f;
+  color: grayscale($accent-color);
   font-weight: 600;
-  text-decoration: underline;
 }
 
 /* Used for edit and delete buttons */
 .recipe--right-side-buttons {
   position: absolute;
-  right: 1rem;
+  right: 0.8rem;
   top: 0.25rem;
   visibility: hidden;
 }
@@ -108,8 +100,8 @@ h1 {
 .icon {
   height: 1.3em;
   width: 1.3em;
-  margin: 0.2em;
-  padding: 0.2em;
+  margin: 0.2rem;
+  padding: 0.2rem;
   cursor:pointer;
   border-radius: 5%;
   &:hover {
@@ -142,16 +134,65 @@ h1 {
   border: none;
   font-family: inherit; /* prevents a change in the font type when editing */
   margin: 0 0.6rem 0 0.4rem;;
-  padding: 0.05rem 0.2rem;
+  padding: 0.04rem 0.2rem;
   font-size: 120%;
 }
 
 .recipe--ingredient {
   color: white;
-  background-color: #b5bdb3;
+  background-color: grayscale(lighten($accent-color, 20%));
   list-style-type: none;
   display: inline-block;
   margin: 0 0.6rem 0 0;
   padding: 0.03rem 0.2rem;
   border-radius: 4px;
+}
+
+/* ADD BUTTON */
+.add-button-band {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: lighten($accent-color, 40%);
+  border: 1px solid grayscale($accent-color);
+  text-align: center;
+}
+
+.add-button-icon {
+  font-size: 100%;
+  vertical-align: middle;
+  margin: 0.3rem;
+  border: 1px solid grayscale($accent-color);
+  border-radius: 7%;
+  cursor: pointer;
+  &:hover {
+    color: $accent-color;
+    border: 1px solid $accent-color;
+  }
+  &:hover + .add-button-label {
+    visibility: visible;;
+  }
+}
+
+
+/*  ANIMATION  */
+
+.transition-enter {
+  opacity: 0.01;
+  max-height: none;
+}
+
+.transition-enter.transition-enter-active {
+  opacity: 1;
+  transition: all 200ms ease-in-out;
+}
+
+.transition-leave {
+  opacity: 1;
+  transform: translate(30em,0);
+  transition: all 300ms ease-in-out;
+}
+
+.transition-leave.transition-leave-active {
+  opacity: 0.01;
+  transition: all 300ms ease-in-out;
 }
