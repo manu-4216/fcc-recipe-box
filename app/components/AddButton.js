@@ -1,4 +1,5 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
 import uuid from 'uuid';
 require('../main.scss');
 
@@ -20,6 +21,10 @@ var AddButton = function({onRecipeAdd}) {
       </button>
     </div>
   )
+};
+
+AddButton.PropTypes = {
+  onRecipeAdd: PropTypes.func.isRequired
 };
 
 module.exports = AddButton;

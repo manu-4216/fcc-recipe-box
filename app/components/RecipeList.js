@@ -1,9 +1,14 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
 var Recipe = require('../components/Recipe');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 require('../main.scss');
 
 var RecipeList = React.createClass({
+  propTypes: {
+    recipes: PropTypes.array.isRequired
+  },
+
   render: function () {
     return (
       <ul className='recipe-list'>

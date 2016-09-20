@@ -1,7 +1,8 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
 require('../main.scss');
 
-var Recipe = function({recipe, onRecipeDelete, onToggleEditAndCollapse, onToggleExpand, onEnterCheck, onFinishEdit}) {
+var Recipe = function({recipe, onRecipeDelete, onToggleEditAndCollapse, onEnterCheck, onFinishEdit}) {
 
   return (
     <li className="recipe" onClick={onToggleEditAndCollapse.bind(null, recipe.id, false)}>
@@ -85,12 +86,29 @@ var Recipe = function({recipe, onRecipeDelete, onToggleEditAndCollapse, onToggle
 
 
       <span className='recipe--right-side-buttons'>
-        <img className='icon' src='images/edit.png' onClick={onToggleEditAndCollapse.bind(null, recipe.id, true)} alt='edit icon'></img>
-        <img className='icon' src='images/trash.png' onClick={onRecipeDelete.bind(null, recipe.id)} alt='trash icon'></img>
+        <img className='icon' src='images/edit.png' onClick={onToggleEditAndCollapse.bind(null, recipe.id, true)} alt='Edit'></img>
+        <img className='icon' src='images/trash.png' onClick={onRecipeDelete.bind(null, recipe.id)} alt='Trash'></img>
       </span>
 
     </li>
   )
+};
+
+Recipe.PropTypes = {
+  recipe: PropTypes.object.isRequired,
+  recipe: PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      ingredients: PropTypes.array,
+      imageUrl: PropTypes.string,
+      editing: PropTypes.bool,
+      expanded: PropTypes.bool
+    }),
+
+  onRecipeDelete: PropTypes.func.isRequired,
+  onToggleEditAndCollapse: PropTypes.func.isRequired,
+  onEnterCheck: PropTypes.func.isRequired,
+  onFinishEdit: PropTypes.func.isRequired
 };
 
 module.exports = Recipe;
