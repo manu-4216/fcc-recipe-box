@@ -66,7 +66,7 @@ var Recipe = React.createClass({
             ) : (
               <span>
                 <input
-                  className='input-ingredients'
+                  className='input-large'
                   type='text'
                   placeholder='add ingredients separated by comma'
                   defaultValue={recipe.ingredients}
@@ -89,7 +89,7 @@ var Recipe = React.createClass({
           ) : (
             <span>
               <input
-                className='input-ingredients'
+                className='input-large'
                 type='text'
                 placeholder='add image url'
                 defaultValue={recipe.imageUrl}
