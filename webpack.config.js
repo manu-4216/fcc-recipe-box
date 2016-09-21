@@ -35,7 +35,7 @@ module.exports = {
     ]
   },
   plugins: [
-    HTMLWebpackPluginConfig /*,
+    HTMLWebpackPluginConfig,
     new webpack.DefinePlugin({
       'process.env':{
         'NODE_ENV': JSON.stringify('production')
@@ -45,6 +45,6 @@ module.exports = {
       compress:{
         warnings: true
       }
-    })*/
+    })
   ]
 }
