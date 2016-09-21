@@ -60,6 +60,7 @@ html {
   margin-left: 0.4rem;
   padding: 0.3rem 0.4rem;
   vertical-align: middle;
+  width: 40%;
 }
 .recipe:hover .recipe--title {
   color: $accent-color;
@@ -109,7 +110,7 @@ html {
 
 .recipe--imageUrl {
   display: inline-block;
-  width: 70%;
+  width: 60%;
   margin-left: 0.4rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -118,8 +119,18 @@ html {
   font-size: 1em;
 }
 
+.recipe--ingredient {
+  color: white;
+  background-color: grayscale(lighten($accent-color, 20%));
+  list-style-type: none;
+  display: inline-block;
+  margin: 0.2rem 0.6rem 0 0.2rem;
+  padding: 0.03rem 0.2rem;
+  border-radius: 4px;
+}
+
 .input-large {
-  width: 60%;
+  width: 50%;
   display: inline;
   font-size: 0.8em !important; /* overwrites inherited font */
   outline: 1px solid lighten(grey, 30%);
@@ -128,16 +139,6 @@ html {
   margin: 0 0.6rem 0 0.4rem;;
   padding: 0.04rem 0.2rem;
   font-size: 120%;
-}
-
-.recipe--ingredient {
-  color: white;
-  background-color: grayscale(lighten($accent-color, 20%));
-  list-style-type: none;
-  display: inline-block;
-  margin: 0 0.6rem 0 0;
-  padding: 0.03rem 0.2rem;
-  border-radius: 4px;
 }
 
 /* ADD BUTTON */
