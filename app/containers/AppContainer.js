@@ -1,6 +1,5 @@
 var React = require('react');
 var RecipeList = require('../components/RecipeList');
-var AddButton = require('../components/AddButton');
 var cacheHelper = require('../utils/cacheHelper');
 
 // Stateful master component.
@@ -132,10 +131,8 @@ var AppContainer = React.createClass({
           onToggleEditAndCollapse={this.handleToggleEditAndCollapse}
           onEnterCheck={this.handleEnterCheck}
           onFinishEdit={this.handleFinishEdit}
-          />
-        <AddButton
           onRecipeAdd={this.handleRecipeAdd}
-        />
+          />
       </div>
     )
   }

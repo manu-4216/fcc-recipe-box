@@ -1,23 +1,25 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var Recipe = require('../components/Recipe');
+var AddButton = require('../components/AddButton');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+var FlipMove = require('react-flip-move');
 require('../main.scss');
 
 var RecipeList = React.createClass({
   propTypes: {
-    recipes: PropTypes.array.isRequired
+    recipes: PropTypes.array.isRequired,
+    onRecipeAdd: PropTypes.func.isRequired
   },
 
   render: function () {
     return (
       <ul className='recipe-list'>
-        <ReactCSSTransitionGroup
-          transitionName="transition"
-          transitionEnterTimeout={200}
-          transitionLeaveTimeout={300}>
-          {this.getItems()}
-        </ReactCSSTransitionGroup>
+      {/* FlipMove will enable smooth animation of the items inside */}
+      <FlipMove easing="cubic-bezier(0, 0.7, 0.8, 0.1)">
+          { this.getItems() }
+          <AddButton onRecipeAdd={this.props.onRecipeAdd} />
+        </FlipMove>
       </ul>
     );
   },
@@ -27,7 +29,8 @@ var RecipeList = React.createClass({
       <Recipe
         key={recipe.id}
         recipe={recipe}
-        {...this.props} />
+        {...this.props}
+      />
     )
   }
 });

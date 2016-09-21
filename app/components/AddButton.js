@@ -3,28 +3,33 @@ var PropTypes = React.PropTypes;
 import uuid from 'uuid';
 require('../main.scss');
 
-var AddButton = function({onRecipeAdd}) {
+// I had to use createClass instead of a function, because of compatibility with react-flip-move 
+var AddButton = React.createClass({
+  propTypes: {
+    onRecipeAdd: PropTypes.func.isRequired
+  },
 
-  const newRecipe = {
-    id: uuid.v4(),
-    name: 'New Recipe',
-    ingredients: [],
-    imageUrl:'',
-    editing: true,
-    expanded: true
+  render: function () {
+    const newRecipe = {
+      id: uuid.v4(),
+      name: 'New Recipe',
+      ingredients: [],
+      imageUrl:'',
+      editing: true,
+      expanded: true
+    };
+
+    let onRecipeAdd = this.props.onRecipeAdd;
+
+    return (
+      <div className='add-button-band'>
+        <button className='add-button-icon' onClick={onRecipeAdd.bind(null, newRecipe)}>
+          +
+        </button>
+      </div>
+    )
   }
 
-  return (
-    <div className='add-button-band'>
-      <button className='add-button-icon' onClick={onRecipeAdd.bind(null, newRecipe)}>
-        +
-      </button>
-    </div>
-  )
-};
-
-AddButton.PropTypes = {
-  onRecipeAdd: PropTypes.func.isRequired
-};
+});
 
 module.exports = AddButton;
